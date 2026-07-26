@@ -394,6 +394,11 @@ footer {
     opacity: 0.7;
 }
 
+.footer-copy a {
+    color: var(--white);
+    text-decoration: underline;
+}
+
 /* ============================================
    8. CONTACT FORM — floated on a card
    ============================================ */
@@ -514,6 +519,19 @@ form .button:hover {
     color: var(--teal);
 }
 
+.map-embed {
+    margin-top: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden; /* clips the map's square corners to rounded */
+    line-height: 0;
+}
+
+.map-embed iframe {
+    width: 100%;
+    height: 220px;
+    border: 0;
+}
+
 /* ============================================
    11. CONTACT SOCIAL ICONS
    ============================================ */
@@ -561,7 +579,7 @@ form .button:hover {
     font-style: italic;
     font-size: 1.05rem;
     color: var(--teal);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.4rem;
 }
 
 .about-grid {
@@ -687,4 +705,49 @@ form .button:hover {
     .wave svg {
         height: 40px;
     }
+}
+
+/* ============================================
+   17. LEGAL PAGES (privacy notice etc.)
+   ============================================ */
+
+.legal {
+    max-width: 720px;   /* narrow = comfortable reading width for text */
+    padding-top: 3rem;
+}
+
+.legal h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 2.6rem);
+    color: var(--teal-dark);
+    margin-bottom: 0.5rem;
+}
+
+.legal-updated {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.legal h2 {
+    font-family: var(--font-head);
+    font-size: 1.3rem;
+    color: var(--teal-dark);
+    margin-top: 2rem;
+    margin-bottom: 0.6rem;
+}
+
+.legal p {
+    margin-bottom: 1rem;
+    color: var(--ink);
+}
+
+.legal a {
+    color: var(--teal);
+    font-weight: 600;
+}
+
+.legal-back {
+    margin-top: 2.5rem;
+    font-weight: 600;
 }
