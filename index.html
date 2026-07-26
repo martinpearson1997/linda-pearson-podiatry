@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata: things ABOUT the page, not shown on it -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linda Pearson Podiatry — Podiatrist in North Wales</title>
+
+    <!-- Favicon: the little icon in the browser tab -->
+    <link rel="icon" href="images/logo.png">
+
+    <!-- Font Awesome: icon library, loaded from a CDN -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Fonts: Fraunces for headings, Plus Jakarta Sans for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Our stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">
+                <!-- alt="" is deliberate: the name is written beside it,
+                     so screen readers skip the decorative badge -->
+                <img src="images/logo.png" alt="" class="logo-img">
+                Linda Pearson Podiatry
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Treatments</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-social">
+                <!-- PLACEHOLDER: paste the practice's Facebook page URL
+                     between the quotes of href -->
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <!-- PLACEHOLDER: WhatsApp link is
+                     https://wa.me/447907106006 when ready to go live -->
+                <a href="#" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="mailto:lindapearsonchp@gmail.com" aria-label="Email us">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <h1>Expert foot care in North Wales</h1>
+        <p>Experienced podiatrist &ndash; new patients welcome!</p>
+        <p class="hero-trust">
+            BSc.Pod.Med &nbsp;&middot;&nbsp; F.Inst.Chp &nbsp;&middot;&nbsp;
+            HCPC registered &nbsp;&middot;&nbsp; Practising since 1997
+        </p>
+        <div class="hero-buttons">
+            <a href="#contact" class="button">Book an appointment</a>
+            <!-- sms: opens the visitor's texting app with the number
+                 filled in — works on phones, quietly inert on desktops -->
+            <a href="sms:+447907106006" class="button button-secondary">Get in touch</a>
+        </div>
+    </section>
+
+    <!-- Treatments -->
+    <section id="services">
+        <p class="eyebrow">What we offer</p>
+        <h2>Treatments</h2>
+        <!-- Prices from Linda's 2025 list — CONFIRM current before launch.
+             All descriptions are PLACEHOLDER drafts for Linda to review. -->
+        <div class="card-grid">
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                <h3>Full treatment</h3>
+                <p>A complete foot care appointment covering nails, hard
+                   skin and overall foot health, tailored to you.</p>
+                <p class="price">From &pound;50</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-scissors"></i></div>
+                <h3>Nails only</h3>
+                <p>Professional thinning, trimming and filing &mdash; a quicker
+                   appointment for healthy, comfortable nails.</p>
+                <p class="price">From &pound;48</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-bandage"></i></div>
+                <h3>Ingrown toenails</h3>
+                <p>Careful treatment to relieve pain and help the nail
+                   grow back properly.</p>
+                <p class="price">From &pound;36</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <h3>Corn &amp; callus removal</h3>
+                <p>Removal of corns and hard skin to relieve pressure
+                   and discomfort.</p>
+                <p class="price">Corns from &pound;30 &middot; Calluses from &pound;42</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-virus"></i></div>
+                <h3>Verrucae treatment</h3>
+                <p>Assessment and treatment of verrucae, with a plan
+                   suited to how stubborn they're being.</p>
+                <p class="price">From &pound;40</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <h3>Diabetic foot care</h3>
+                <p>Specialist assessment and ongoing care for patients
+                   with diabetes, protecting long-term foot health.</p>
+                <p class="price">From &pound;50</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>Fungal &amp; damaged nail reconstruction</h3>
+                <p>Rebuilding the appearance of fungal or damaged nails
+                   for a natural, healthy look.</p>
+                <p class="price">From &pound;36 per nail</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-spa"></i></div>
+                <h3>Paraffin wax treatment</h3>
+                <p>A warming wax treatment for hands or feet &mdash; soothing
+                   for dry skin and tired joints.</p>
+                <p class="price">From &pound;48</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+                <h3>Luxury pedicure</h3>
+                <p>Foot care with a treat on top &mdash; leave with healthy
+                   feet that look after themselves.</p>
+                <p class="price">Price on enquiry</p>
+                <!-- PLACEHOLDER: confirm price, or remove this card if
+                     paraffin wax IS the luxury pedicure -->
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Wave divider into the white About band -->
+    <div class="wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,64 C360,110 720,10 1080,50 C1260,70 1380,60 1440,40
+                     L1440,100 L0,100 Z"></path>
+        </svg>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+        <div class="about-inner">
+            <p class="eyebrow">Meet your podiatrist</p>
+            <h2>About Linda</h2>
+            <p class="credentials-line">BSc.Pod.Med &middot; F.Inst.Chp &middot; HCPC Registered Chiropodist &amp; Podiatrist</p>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Linda Pearson is an HCPC-registered chiropodist and
+                        podiatrist, in practice since 1997 &mdash;
+                        <span id="years-experience">over 25</span> years of
+                        experience caring for feet across North Wales. A Fellow
+                        of the Institute of Chiropodists and Podiatrists, she
+                        also served ten years as its president.
+                        <!-- PLACEHOLDER: Linda to confirm exact wording -->
+                    </p>
+                    <p>
+                        The practice welcomes new patients as well as existing
+                        ones, and offers care for the whole family &mdash;
+                        including children's foot care and specialist diabetic
+                        foot care. The premises are accessible, with plenty of
+                        parking. A range of quality foot care and eco-friendly
+                        products is also available at the clinic.
+                    </p>
+                </div>
+                <!-- alt text: what a screen reader says instead of the image -->
+                <img src="images/linda.png"
+                     alt="Linda Pearson, podiatrist, in her practice"
+                     class="about-photo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Same wave, flipped, easing back to cream -->
+    <div class="wave wave-flip" aria-hidden="true">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none"
+             xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,64 C360,110 720,10 1080,50 C1260,70 1380,60 1440,40
+                     L1440,100 L0,100 Z"></path>
+        </svg>
+    </div>
+
+    <!-- Contact -->
+    <section id="contact">
+        <p class="eyebrow">Contact</p>
+        <h2>Book an appointment</h2>
+        <p class="contact-intro">
+            Call <a href="tel:+447907106006">07907 106006</a>
+            or send a message and we'll get back to you.
+        </p>
+
+        <div class="contact-grid">
+
+            <!-- data-netlify="true" tells Netlify to collect this form's
+                 submissions. The honeypot quietly filters spam bots. -->
+            <form id="contact-form" name="contact" method="POST"
+                  data-netlify="true" netlify-honeypot="bot-field">
+                <!-- Netlify needs this to route the submission -->
+                <input type="hidden" name="form-name" value="contact">
+                <!-- Honeypot: invisible to humans, bots fill it in,
+                     Netlify bins anything that does -->
+                <p hidden><label>Don't fill this in: <input name="bot-field"></label></p>
+
+                <div class="form-field">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <div class="form-field">
+                    <label for="phone">Phone number</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-field">
+                    <label for="message">How can we help?</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="button">Send message</button>
+
+                <!-- JavaScript writes success/error messages here -->
+                <p id="form-status"></p>
+            </form>
+
+            <div class="contact-details">
+                <h3><i class="fa-solid fa-location-dot"></i> Find us</h3>
+                <p>
+                    Unit 7, Abakhan Craft Village<br>
+                    Coast Road, Llanerch Y Mor<br>
+                    Holywell CH8 9DX
+                </p>
+
+                <h3><i class="fa-solid fa-clock"></i> Opening hours</h3>
+                <p>
+                    Thursday &amp; Friday, 9am &ndash; 4pm<br>
+                    Monday &amp; Tuesday by appointment
+                </p>
+
+                <h3><i class="fa-solid fa-comments"></i> Message us</h3>
+                <p class="contact-social">
+                    <!-- Same PLACEHOLDER links as the nav — fill both together -->
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:lindapearsonchp@gmail.com" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
+                </p>
+
+                <p class="reassurance">
+                    Accessible premises &middot; Free parking &middot;
+                    New patients welcome
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-name">Linda Pearson Podiatry</p>
+        <p class="footer-creds">BSc.Pod.Med &nbsp;&middot;&nbsp; F.Inst.Chp &nbsp;&middot;&nbsp; HCPC registered</p>
+        <p class="footer-contact">
+            <a href="tel:+447907106006">07907 106006</a> &nbsp;&middot;&nbsp;
+            Abakhan Craft Village, Llanerch Y Mor, Holywell
+        </p>
+        <p class="footer-copy">&copy; 2026 Linda Pearson Podiatry</p>
+    </footer>
+
+    <!-- JavaScript loads last, after the page content exists -->
+    <script src="script.js"></script>
+</body>
+</html>
