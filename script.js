@@ -1,35 +1,33 @@
 // ============================================
-// CONTACT FORM VALIDATION
+// LINDA PEARSON PODIATRY — script.js
+// Complete consolidated version. Replaces everything.
 // ============================================
 
-// Grab the elements we need and store them in variables.
-// document.getElementById("...") finds the HTML element with that id —
-// this is "the DOM": your HTML, as objects JavaScript can read and change.
+// ============================================
+// 1. CONTACT FORM — validation + real sending
+// ============================================
+
+// Find the elements we need in the page (the DOM)
 const form = document.getElementById("contact-form");
 const nameField = document.getElementById("name");
 const phoneField = document.getElementById("phone");
 const messageField = document.getElementById("message");
 const status = document.getElementById("form-status");
 
-// "Listen" for the form's submit event — fires when the button
-// is pressed OR when someone hits Enter in a field.
 form.addEventListener("submit", function (event) {
 
-    // Stop the browser doing its default submit (which reloads
-    // the page). WE decide what happens instead.
+    // Stop the browser's default submit (which reloads the page)
     event.preventDefault();
 
-    // Collect the values. .trim() removes spaces from both ends,
-    // so "   " doesn't count as a filled-in name.
     const name = nameField.value.trim();
     const phone = phoneField.value.trim();
     const message = messageField.value.trim();
 
-    // Check each field, simplest first. "return" stops the
-    // function immediately — no point checking further.
+    // --- Validation, simplest checks first ---
+
     if (name === "") {
         showStatus("Please enter your name.", "error");
-        nameField.focus(); // put the cursor in the offending field
+        nameField.focus();
         return;
     }
 
@@ -39,9 +37,8 @@ form.addEventListener("submit", function (event) {
         return;
     }
 
-    // Sanity-check the phone number: strip spaces, then require
-    // 10–15 characters that are digits (with an optional leading +).
-    const digits = phone.replace(/\s/g, ""); // remove all spaces
+    // Strip spaces, then require 10-15 digits (optional leading +)
+    const digits = phone.replace(/\s/g, "");
     if (!/^\+?\d{10,15}$/.test(digits)) {
         showStatus("That phone number doesn't look right — please check it.", "error");
         phoneField.focus();
@@ -54,39 +51,59 @@ form.addEventListener("submit", function (event) {
         return;
     }
 
-    // Everything passed. (Actual sending comes when we launch —
-    // for now we confirm and clear the form.)
-    showStatus("Thank you — your message has been received. We'll be in touch soon.", "success");
-    form.reset(); // empty all the fields
+    // --- Everything passed: send to Netlify ---
+    // fetch() POSTs the form data to our own site, where Netlify's
+    // form handler catches and stores it. Only works on the LIVE
+    // site — locally there's no Netlify listening, so you'll see
+    // the polite error message instead. That's correct behaviour.
+
+    showStatus("Sending…", "success");
+
+    fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData(form)).toString()
+    })
+    .then(function (response) {
+        // response.ok is true only for a genuine success (HTTP 200s).
+        // Without this check, a failed send could still show "thank you".
+        if (response.ok) {
+            showStatus("Thank you — your message has been sent. We'll be in touch soon.", "success");
+            form.reset();
+        } else {
+            showStatus("Sorry — something went wrong sending that. Please call us instead.", "error");
+        }
+    })
+    .catch(function () {
+        showStatus("Sorry — something went wrong sending that. Please call us instead.", "error");
+    });
 });
 
-// A small helper so we write the status-updating code once, not
-// five times. It takes the text and a type ("error" or "success").
+// Small helper so status updates live in one place
 function showStatus(text, type) {
     status.textContent = text;
-    status.className = type; // sets class="error" or class="success"
+    status.className = type; // "error" or "success" — CSS colours it
 }
-// ============================================
-// YEARS OF EXPERIENCE — calculated, never stale
-// ============================================
-
-// new Date().getFullYear() asks the visitor's browser what year
-// it is. 2026 - 1997 = 29 today, 30 next year, automatically.
-const years = new Date().getFullYear() - 1997;
-document.getElementById("years-experience").textContent = years;
 
 // ============================================
-// SCROLL-REVEAL — elements fade up as they enter view
+// 2. YEARS OF EXPERIENCE — calculated, never stale
 // ============================================
 
-// Tag the things we want to animate. Doing it here in JS means
-// visitors with JavaScript off simply see everything, un-animated.
+// Asks the visitor's browser what year it is, so "29 years"
+// becomes "30 years" automatically next January.
+const yearsSpan = document.getElementById("years-experience");
+if (yearsSpan) {
+    yearsSpan.textContent = new Date().getFullYear() - 1997;
+}
+
+// ============================================
+// 3. SCROLL-REVEAL — elements fade up into view
+// ============================================
+
 const revealItems = document.querySelectorAll(
     ".card, .about-grid, .contact-grid, section h2, .eyebrow"
 );
 
-// IntersectionObserver: the browser tells US when an element
-// scrolls into view, instead of us constantly checking.
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if ("IntersectionObserver" in window && !reduceMotion) {
@@ -94,15 +111,15 @@ if ("IntersectionObserver" in window && !reduceMotion) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // animate once, then stop watching
+                observer.unobserve(entry.target); // animate once, then stop
             }
         });
-    }, { threshold: 0.12 }); // fire when 12% of the element is visible
+    }, { threshold: 0.12 });
 
     revealItems.forEach(function (el) {
         el.classList.add("reveal");
         observer.observe(el);
     });
 }
-// If the browser is old or the visitor prefers no motion,
-// we never add .reveal — everything just shows normally.
+// Older browsers / reduced-motion users: .reveal is never added,
+// so everything simply shows normally.
