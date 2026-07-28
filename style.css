@@ -308,6 +308,12 @@ section h2 {
     transition: transform 0.25s, box-shadow 0.25s;
 }
 
+/* Cards are now links - keep them looking like cards, not links */
+a.card {
+    text-decoration: none;
+    color: inherit;
+}
+
 .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lift);
@@ -350,6 +356,15 @@ section h2 {
     background-color: var(--teal-soft);
     padding: 0.4rem 0.95rem;
     border-radius: 999px;
+}
+
+.card-link {
+    color: inherit;          /* keep the teal heading colour */
+    text-decoration: none;
+}
+
+.card-link:hover {
+    text-decoration: underline;
 }
 
 /* ============================================
@@ -532,6 +547,21 @@ form .button:hover {
     border: 0;
 }
 
+#contact {
+    max-width: none;              /* span full width for the white band */
+    background-color: #ffffff;
+}
+
+/* Re-impose the readable content width inside the full-width band */
+#contact .eyebrow,
+#contact > h2,
+#contact > .contact-intro,
+#contact > .contact-grid {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* ============================================
    11. CONTACT SOCIAL ICONS
    ============================================ */
@@ -586,7 +616,7 @@ form .button:hover {
     display: grid;
     grid-template-columns: 3fr 2fr;
     gap: 3rem;
-    align-items: center;
+    align-items: stretch;
 }
 
 .about-text p {
@@ -598,7 +628,10 @@ form .button:hover {
    Eight radii: horizontal four / vertical four. */
 .about-photo {
     width: 100%;
-    height: auto;
+    height: 100%;            /* match the height of the text column */
+    max-height: 460px;       /* but never grow into a tower */
+    object-fit: cover;       /* crop to fit, never squash */
+    object-position: top;    /* keep the top of the photo - Linda's face */
     border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
     box-shadow: var(--shadow-lift);
 }
@@ -705,6 +738,10 @@ form .button:hover {
     .wave svg {
         height: 40px;
     }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ============================================
@@ -749,5 +786,497 @@ form .button:hover {
 
 .legal-back {
     margin-top: 2.5rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   18. TREATMENTS PAGE
+   ============================================ */
+
+/* Page header band */
+.treatments-hero {
+    text-align: center;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+}
+
+.treatments-hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--teal-dark);
+    margin-bottom: 1rem;
+}
+
+.treatments-intro {
+    max-width: 40em;
+    margin: 0 auto;
+    color: var(--ink-soft);
+}
+
+/* The stack of treatment blocks, in a readable column */
+.treatment-list {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+}
+
+/* Each treatment card */
+.treatment {
+    background-color: var(--white);
+    border: 1px solid rgba(16, 42, 41, 0.06);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    padding: 2rem;
+    margin-bottom: 1.75rem;
+    scroll-margin-top: 100px; /* land below the sticky nav when linked to */
+}
+
+.treatment h2 {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    color: var(--teal-dark);
+    margin-bottom: 0.75rem;
+}
+
+.treatment-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: var(--teal-soft);
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.treatment > .treatment-body > p {
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+}
+
+/* The "What is...?" explainer box — visually distinct, teal-tinted */
+.explainer {
+    background-color: var(--teal-soft);
+    border-left: 4px solid var(--teal);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.explainer h3 {
+    font-family: var(--font-head);
+    font-size: 1.05rem;
+    color: var(--teal-dark);
+    margin-bottom: 0.6rem;
+}
+
+.explainer h3 i {
+    margin-right: 0.4rem;
+    color: var(--teal);
+}
+
+.explainer p {
+    color: var(--ink);
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+}
+
+.explainer-source {
+    font-size: 0.82rem !important;
+    color: var(--ink-soft) !important;
+    font-style: italic;
+    margin-bottom: 0 !important;
+}
+
+/* Price + button row at the bottom of each treatment */
+.treatment-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.treatment-footer .price {
+    color: var(--teal-dark);
+    font-weight: 700;
+    font-size: 0.95rem;
+    background-color: var(--teal-soft);
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+}
+
+/* Closing conversion band */
+.cta-band {
+    background-color: var(--teal);
+    color: var(--white);
+    text-align: center;
+    max-width: none;
+    padding: 4rem 1.5rem;
+    margin: 0;
+}
+
+.cta-band h2 {
+    font-family: var(--font-head);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 0.75rem;
+    color: var(--white);
+}
+
+.cta-band p {
+    max-width: 34em;
+    margin: 0 auto 2rem;
+    opacity: 0.94;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Outline button variant for the phone number in the CTA band */
+.button-outline {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid var(--white);
+    box-shadow: none;
+}
+
+.button-outline:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: var(--white);
+}
+
+/* ============================================
+   19. BLOG — catalogue + posts
+   ============================================ */
+
+/* --- Catalogue page --- */
+.blog-hero {
+    text-align: center;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+}
+
+.blog-hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--teal-dark);
+    margin-bottom: 1rem;
+}
+
+.blog-intro {
+    max-width: 38em;
+    margin: 0 auto;
+    color: var(--ink-soft);
+}
+
+.blog-grid-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.blog-card {
+    background-color: var(--white);
+    border: 1px solid rgba(16, 42, 41, 0.06);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    padding: 1.75rem;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+/* Only real (linked) cards lift on hover */
+a.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+}
+
+.blog-card-tag {
+    align-self: flex-start;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background-color: var(--teal-soft);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+}
+
+.blog-card h2 {
+    font-family: var(--font-head);
+    font-size: 1.25rem;
+    color: var(--teal-dark);
+    margin-bottom: 0.6rem;
+}
+
+.blog-card p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+}
+
+.blog-card-more {
+    margin-top: auto;
+    font-weight: 600;
+    color: var(--teal);
+    font-size: 0.9rem;
+}
+
+.blog-card-more i {
+    font-size: 0.8rem;
+    margin-left: 0.3rem;
+}
+
+/* "Coming soon" cards look quieter and aren't clickable */
+.blog-card-soon {
+    opacity: 0.7;
+}
+
+.blog-card-soon .blog-card-more {
+    color: var(--ink-soft);
+}
+
+/* --- Single post page --- */
+.post {
+    max-width: 720px;   /* narrow column = comfortable reading */
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 2rem;
+}
+
+.post-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.75rem;
+}
+
+.post h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    color: var(--teal-dark);
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+}
+
+.post-meta {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.blog-card-image {
+    /* Pull out to the card edges, cancelling the card's padding */
+    margin: -1.75rem -1.75rem 1.25rem;
+    width: calc(100% + 3.5rem);
+    height: 160px;
+    object-fit: cover;            /* fill the space, crop nicely, no squashing */
+    border-radius: 14px 14px 0 0; /* round only the top corners */
+    display: block;
+}
+
+.post-lead {
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 2rem;
+}
+
+.post h2 {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    color: var(--teal-dark);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.post p {
+    color: var(--ink);
+    margin-bottom: 1.1rem;
+    line-height: 1.75;
+}
+
+/* Highlighted takeaway box inside a post */
+.post-callout {
+    background-color: var(--teal-soft);
+    border-left: 4px solid var(--teal);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.post-callout h3 {
+    font-family: var(--font-head);
+    font-size: 1.1rem;
+    color: var(--teal-dark);
+    margin-bottom: 0.6rem;
+}
+
+.post-callout h3 i {
+    color: var(--teal);
+    margin-right: 0.4rem;
+}
+
+.post-callout p {
+    margin-bottom: 0;
+}
+
+.post-source {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    border-top: 1px solid rgba(16, 42, 41, 0.1);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+}
+/* ============================================
+   20. REVIEWS
+   ============================================ */
+
+#reviews {
+    text-align: center;
+}
+
+#reviews h2 {
+    margin-bottom: 2.5rem;
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.review-card {
+    background-color: var(--white);
+    border: 1px solid rgba(16, 42, 41, 0.06);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.stars {
+    color: #f4b740;      /* warm gold, the universal review colour */
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.review-text {
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 1.25rem;
+}
+
+.review-name {
+    margin-top: auto;    /* pins the name to the bottom, so cards align */
+    font-weight: 700;
+    color: var(--teal-dark);
+}
+
+/* ============================================
+   21. COOKIE CONSENT BANNER
+   ============================================ */
+
+.cookie-banner {
+    position: fixed;          /* pinned to the window, not the page */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;             /* above everything, including the nav */
+    background-color: var(--teal-dark);
+    color: var(--white);
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 -4px 20px rgba(16, 42, 41, 0.2);
+}
+
+.cookie-banner-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.cookie-banner p {
+    font-size: 0.9rem;
+    margin: 0;
+    flex: 1 1 320px;          /* takes the space, wraps when tight */
+}
+
+.cookie-banner a {
+    color: var(--white);
+    text-decoration: underline;
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.cookie-buttons .button {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+}
+
+/* Quieter secondary button for Decline - equal prominence to
+   Accept is the fair way to present the choice */
+.button-quiet {
+    background-color: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: none;
+}
+
+.button-quiet:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: var(--white);
+}
+
+/* Message shown where the map would be, if cookies are declined */
+.map-placeholder {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    background-color: var(--white);
+    border: 1px dashed rgba(16, 42, 41, 0.2);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.map-placeholder a {
+    color: var(--teal);
     font-weight: 600;
 }

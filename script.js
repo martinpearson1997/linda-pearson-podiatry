@@ -123,3 +123,61 @@ if ("IntersectionObserver" in window && !reduceMotion) {
 }
 // Older browsers / reduced-motion users: .reveal is never added,
 // so everything simply shows normally.
+
+// ============================================
+// 4. COOKIE CONSENT
+// Remembers the visitor's choice, and only loads the
+// Google Map if they've accepted.
+// ============================================
+
+const cookieBanner = document.getElementById("cookie-banner");
+const CONSENT_KEY = "lpp-cookie-consent";
+
+// Put the map into its container. Only called after consent.
+function loadMap() {
+    const holder = document.getElementById("map-embed");
+    if (!holder || holder.querySelector("iframe")) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = holder.dataset.mapSrc; // reads the data-map-src attribute
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.title = "Map showing Linda Pearson Podiatry at Abakhan Craft Village";
+    iframe.setAttribute("allowfullscreen", "");
+
+    holder.innerHTML = ""; // clear the "map hidden" message
+    holder.appendChild(iframe);
+}
+
+function setConsent(choice) {
+    localStorage.setItem(CONSENT_KEY, choice);
+    if (cookieBanner) cookieBanner.hidden = true;
+    if (choice === "accepted") loadMap();
+}
+
+// On page load: act on any previous choice, or show the banner
+const savedConsent = localStorage.getItem(CONSENT_KEY);
+
+if (savedConsent === "accepted") {
+    loadMap();
+} else if (savedConsent !== "declined" && cookieBanner) {
+    cookieBanner.hidden = false; // no choice made yet - ask
+}
+
+// Wire up the buttons (they only exist if the banner is on the page)
+const acceptBtn = document.getElementById("cookie-accept");
+const declineBtn = document.getElementById("cookie-decline");
+
+if (acceptBtn) acceptBtn.addEventListener("click", function () { setConsent("accepted"); });
+if (declineBtn) declineBtn.addEventListener("click", function () { setConsent("declined"); });
+
+// "Cookie settings" footer link re-opens the banner so a visitor
+// can change their mind - a requirement of doing this properly.
+const settingsLink = document.getElementById("cookie-settings-link");
+if (settingsLink) {
+    settingsLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        localStorage.removeItem(CONSENT_KEY);
+        if (cookieBanner) cookieBanner.hidden = false;
+    });
+}
