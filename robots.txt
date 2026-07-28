@@ -1,0 +1,7 @@
+# robots.txt - tells search engine crawlers what they may access.
+# This site has nothing to hide, so everything is allowed.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.lindapearsonpodiatry.com/sitemap.xml
