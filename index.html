@@ -38,7 +38,7 @@
                 <li><a href="treatments.html">Treatments</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="book.html">Book</a></li>
             </ul>
             <div class="nav-social">
                 <a href="https://www.facebook.com/profile.php?id=61552832072055" aria-label="Facebook">
@@ -63,7 +63,7 @@
             HCPC registered &nbsp;&middot;&nbsp; Practising since 1997
         </p>
         <div class="hero-buttons">
-            <a href="#contact" class="button">Book an appointment</a>
+            <a href="book.html" class="button">Book an appointment</a>
             <!-- sms: opens the visitor's texting app with the number
                  filled in - works on phones, quietly inert on desktops -->
             <a href="sms:+447907106006" class="button button-secondary">Get in touch</a>
@@ -313,41 +313,19 @@
         <h2>Book an appointment</h2>
         <p class="contact-intro">
             Call <a href="tel:+447907106006">07907 106006</a>
-            or send a message and we'll get back to you.
+            or send us a booking request and we'll get back to you.
         </p>
 
         <div class="contact-grid">
 
-            <!-- data-netlify="true" tells Netlify to collect this form's
-                 submissions. The honeypot quietly filters spam bots. -->
-            <form id="contact-form" name="contact" method="POST"
-                  data-netlify="true" netlify-honeypot="bot-field">
-                <!-- Netlify needs this to route the submission -->
-                <input type="hidden" name="form-name" value="contact">
-                <!-- Honeypot: invisible to humans, bots fill it in,
-                     Netlify bins anything that does -->
-                <p hidden><label>Don't fill this in: <input name="bot-field"></label></p>
-
-                <div class="form-field">
-                    <label for="name">Your name</label>
-                    <input type="text" id="name" name="name">
-                </div>
-
-                <div class="form-field">
-                    <label for="phone">Phone number</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-
-                <div class="form-field">
-                    <label for="message">Your message</label>
-                    <textarea id="message" name="message" rows="5"></textarea>
-                </div>
-
-                <button type="submit" class="button">Send message</button>
-
-                <!-- JavaScript writes success/error messages here -->
-                <p id="form-status"></p>
-            </form>
+            <div class="contact-cta">
+                <h3>Ready to book?</h3>
+                <p>
+                    Send a request online and Linda will be in touch to
+                    arrange a time that suits you.
+                </p>
+                <a href="book.html" class="button">Book an appointment</a>
+            </div>
 
             <div class="contact-details">
                 <h3><i class="fa-solid fa-location-dot"></i> Find us</h3>
@@ -359,17 +337,14 @@
 
                 <h3><i class="fa-solid fa-clock"></i> Opening hours</h3>
                 <p>
-                    Monday: by appointment<br>
-                    Tuesday: by appointment<br>
-                    Thursday: 9am - 4pm<br>
-                    Friday: 9am - 4pm<br>
+                    Thursday &amp; Friday, 9am - 4pm<br>
+                    Monday &amp; Tuesday by appointment
                 </p>
 
                 <h3><i class="fa-solid fa-comments"></i> Message us</h3>
                 <p class="contact-social">
-                    <!-- Same PLACEHOLDER links as the nav - fill both together -->
-                    <a href="https://www.facebook.com/profile.php?id=61552832072055" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://wa.me/447907106006" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="mailto:lindapearsonchp@gmail.com" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
                 </p>
 

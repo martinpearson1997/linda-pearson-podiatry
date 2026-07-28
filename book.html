@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an appointment - Linda Pearson Podiatry</title>
+    <meta name="description" content="Book an appointment with Linda Pearson Podiatry in North Wales, or ask a question. Private podiatry practice at Abakhan Craft Village, Holywell.">
+
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html#home" class="logo">
+                <img src="images/logo.png" alt="" class="logo-img">
+                Linda Pearson Podiatry
+            </a>
+            <ul class="nav-links">
+                <li><a href="treatments.html">Treatments</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="book.html">Book</a></li>
+            </ul>
+            <div class="nav-social">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:lindapearsonchp@gmail.com" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="book-hero">
+        <p class="eyebrow">Get in touch</p>
+        <h1>Book an appointment</h1>
+        <p class="book-intro">
+            Send a request below and we'll come back to you, or call
+            <a href="tel:+447907106006">07907 106006</a> to speak to Linda
+            directly. New patients are always welcome.
+        </p>
+    </section>
+
+    <section class="book-section">
+        <div class="contact-grid">
+
+            <form id="contact-form" name="contact" method="POST"
+                  data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="contact">
+                <p hidden><label>Don't fill this in: <input name="bot-field"></label></p>
+
+                <div class="form-field">
+                    <label for="enquiry">What can we help with? <span class="req">*</span></label>
+                    <select id="enquiry" name="enquiry" required>
+                        <option value="">Please choose...</option>
+                        <option value="Booking request">Booking request</option>
+                        <option value="A question for Linda">A question for Linda</option>
+                    </select>
+                </div>
+
+                <!-- Only shown when "Booking request" is chosen.
+                     JavaScript adds/removes the "hidden" attribute. -->
+                <div class="form-field" id="treatment-field" hidden>
+                    <label for="treatment">Which treatment?</label>
+                    <select id="treatment" name="treatment">
+                        <option value="">Not sure / please advise</option>
+                        <option value="Full treatment">Full treatment</option>
+                        <option value="Nails only">Nails only</option>
+                        <option value="Ingrown toenails">Ingrown toenails</option>
+                        <option value="Corn &amp; callus removal">Corn &amp; callus removal</option>
+                        <option value="Verrucae treatment">Verrucae treatment</option>
+                        <option value="Diabetic foot care">Diabetic foot care</option>
+                        <option value="Fungal &amp; damaged nail reconstruction">Fungal &amp; damaged nail reconstruction</option>
+                        <option value="Paraffin wax treatment">Paraffin wax treatment</option>
+                        <option value="Luxury pedicure">Luxury pedicure</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="name">Your name <span class="req">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="phone">Phone number <span class="req">*</span></label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="message">Your message</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+
+                <p class="form-note">
+                    <span class="req">*</span> Required. Please don't include
+                    detailed medical information here - that's best discussed
+                    by phone or in person.
+                </p>
+
+                <button type="submit" class="button">Send request</button>
+
+                <p id="form-status"></p>
+            </form>
+
+            <div class="contact-details">
+                <h3><i class="fa-solid fa-phone"></i> Prefer to call?</h3>
+                <p>
+                    <a href="tel:+447907106006">07907 106006</a>
+                </p>
+
+                <h3><i class="fa-solid fa-location-dot"></i> Find us</h3>
+                <p>
+                    Unit 7, Abakhan Craft Village<br>
+                    Coast Road, Llanerch Y Mor<br>
+                    Holywell CH8 9DX
+                </p>
+
+                <h3><i class="fa-solid fa-clock"></i> Opening hours</h3>
+                <p>
+                    Thursday &amp; Friday, 9am - 4pm<br>
+                    Monday &amp; Tuesday by appointment
+                </p>
+
+                <p class="reassurance">
+                    Accessible premises &middot; Free parking &middot;
+                    New patients welcome
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-name">Linda Pearson Podiatry</p>
+        <p class="footer-creds">BSc.Pod.Med &nbsp;&middot;&nbsp; F.Inst.Chp &nbsp;&middot;&nbsp; HCPC registered</p>
+        <p class="footer-contact">
+            <a href="tel:+447907106006">07907 106006</a> &nbsp;&middot;&nbsp;
+            Abakhan Craft Village, Llanerch Y Mor, Holywell
+        </p>
+        <p class="footer-copy">
+            &copy; 2026 Linda Pearson Podiatry &nbsp;&middot;&nbsp;
+            <a href="privacy.html">Privacy Notice</a> &nbsp;&middot;&nbsp;
+            <a href="#" id="cookie-settings-link">Cookie settings</a>
+        </p>
+    </footer>
+
+    <div id="cookie-banner" class="cookie-banner" hidden>
+        <div class="cookie-banner-inner">
+            <p>
+                We use a small number of cookies from Google to show our
+                location map and load our fonts. Nothing is used for
+                advertising or tracking. See our
+                <a href="privacy.html">Privacy Notice</a>.
+            </p>
+            <div class="cookie-buttons">
+                <button type="button" id="cookie-accept" class="button">Accept</button>
+                <button type="button" id="cookie-decline" class="button button-quiet">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

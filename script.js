@@ -1,107 +1,143 @@
 // ============================================
-// LINDA PEARSON PODIATRY — script.js
+// LINDA PEARSON PODIATRY - script.js
 // Complete consolidated version. Replaces everything.
 // ============================================
 
 // ============================================
-// 1. CONTACT FORM — validation + real sending
+// 1. CONTACT / BOOKING FORM
+// Everything here is wrapped in a check that the form
+// exists, so the rest of the file still runs on pages
+// that don't have one.
 // ============================================
 
-// Find the elements we need in the page (the DOM)
 const form = document.getElementById("contact-form");
-const nameField = document.getElementById("name");
-const phoneField = document.getElementById("phone");
-const messageField = document.getElementById("message");
-const status = document.getElementById("form-status");
 
-form.addEventListener("submit", function (event) {
+if (form) {
 
-    // Stop the browser's default submit (which reloads the page)
-    event.preventDefault();
+    const enquiryField = document.getElementById("enquiry");
+    const treatmentField = document.getElementById("treatment");
+    const treatmentWrapper = document.getElementById("treatment-field");
+    const nameField = document.getElementById("name");
+    const phoneField = document.getElementById("phone");
+    const messageField = document.getElementById("message");
+    const status = document.getElementById("form-status");
 
-    const name = nameField.value.trim();
-    const phone = phoneField.value.trim();
-    const message = messageField.value.trim();
+    // --- Show the treatment dropdown only for booking requests ---
 
-    // --- Validation, simplest checks first ---
-
-    if (name === "") {
-        showStatus("Please enter your name.", "error");
-        nameField.focus();
-        return;
+    function updateTreatmentVisibility() {
+        if (!treatmentWrapper || !enquiryField) return;
+        const isBooking = enquiryField.value === "Booking request";
+        treatmentWrapper.hidden = !isBooking;
+        // If they switch away from booking, clear the treatment so a
+        // stale value isn't submitted with a general question.
+        if (!isBooking && treatmentField) treatmentField.value = "";
     }
 
-    if (phone === "") {
-        showStatus("Please enter a phone number so we can call you back.", "error");
-        phoneField.focus();
-        return;
+    if (enquiryField) {
+        enquiryField.addEventListener("change", updateTreatmentVisibility);
     }
 
-    // Strip spaces, then require 10-15 digits (optional leading +)
-    const digits = phone.replace(/\s/g, "");
-    if (!/^\+?\d{10,15}$/.test(digits)) {
-        showStatus("That phone number doesn't look right — please check it.", "error");
-        phoneField.focus();
-        return;
+    // --- Pre-fill from the address bar ---
+    // A link like book.html?enquiry=booking&treatment=Full%20treatment
+    // arrives with those values in the URL. URLSearchParams reads them
+    // out, and we set the dropdowns to match.
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("enquiry") === "booking" && enquiryField) {
+        enquiryField.value = "Booking request";
     }
 
-    if (message === "") {
-        showStatus("Please tell us briefly how we can help.", "error");
-        messageField.focus();
-        return;
+    updateTreatmentVisibility(); // run once on load, after any pre-fill
+
+    const wantedTreatment = params.get("treatment");
+    if (wantedTreatment && treatmentField) {
+        // Only set it if it's genuinely one of our options, so a
+        // made-up value in the URL can't inject anything odd.
+        const optionExists = Array.from(treatmentField.options)
+            .some(function (opt) { return opt.value === wantedTreatment; });
+        if (optionExists) treatmentField.value = wantedTreatment;
     }
 
-    // --- Everything passed: send to Netlify ---
-    // fetch() POSTs the form data to our own site, where Netlify's
-    // form handler catches and stores it. Only works on the LIVE
-    // site — locally there's no Netlify listening, so you'll see
-    // the polite error message instead. That's correct behaviour.
+    // --- Validation and sending ---
 
-    showStatus("Sending…", "success");
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString()
-    })
-    .then(function (response) {
-        // response.ok is true only for a genuine success (HTTP 200s).
-        // Without this check, a failed send could still show "thank you".
-        if (response.ok) {
-            showStatus("Thank you — your message has been sent. We'll be in touch soon.", "success");
-            form.reset();
-        } else {
-            showStatus("Sorry — something went wrong sending that. Please call us instead.", "error");
+        const enquiry = enquiryField ? enquiryField.value : "";
+        const name = nameField.value.trim();
+        const phone = phoneField.value.trim();
+
+        if (enquiryField && enquiry === "") {
+            showStatus("Please choose what we can help with.", "error");
+            enquiryField.focus();
+            return;
         }
-    })
-    .catch(function () {
-        showStatus("Sorry — something went wrong sending that. Please call us instead.", "error");
-    });
-});
 
-// Small helper so status updates live in one place
-function showStatus(text, type) {
-    status.textContent = text;
-    status.className = type; // "error" or "success" — CSS colours it
+        if (name === "") {
+            showStatus("Please enter your name.", "error");
+            nameField.focus();
+            return;
+        }
+
+        if (phone === "") {
+            showStatus("Please enter a phone number so we can call you back.", "error");
+            phoneField.focus();
+            return;
+        }
+
+        // Strip spaces, then require 10-15 digits (optional leading +)
+        const digits = phone.replace(/\s/g, "");
+        if (!/^\+?\d{10,15}$/.test(digits)) {
+            showStatus("That phone number doesn't look right - please check it.", "error");
+            phoneField.focus();
+            return;
+        }
+
+        // Send to Netlify. Only works on the live site - locally there's
+        // no Netlify listening, so you'll see the error message instead.
+        showStatus("Sending...", "success");
+
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(new FormData(form)).toString()
+        })
+        .then(function (response) {
+            if (response.ok) {
+                showStatus("Thank you - your message has been sent. We'll be in touch soon.", "success");
+                form.reset();
+                updateTreatmentVisibility(); // hide treatment again after reset
+            } else {
+                showStatus("Sorry - something went wrong sending that. Please call us instead.", "error");
+            }
+        })
+        .catch(function () {
+            showStatus("Sorry - something went wrong sending that. Please call us instead.", "error");
+        });
+    });
+
+    function showStatus(text, type) {
+        status.textContent = text;
+        status.className = type;
+    }
 }
 
 // ============================================
-// 2. YEARS OF EXPERIENCE — calculated, never stale
+// 2. YEARS OF EXPERIENCE - calculated, never stale
 // ============================================
 
-// Asks the visitor's browser what year it is, so "29 years"
-// becomes "30 years" automatically next January.
 const yearsSpan = document.getElementById("years-experience");
 if (yearsSpan) {
     yearsSpan.textContent = new Date().getFullYear() - 1997;
 }
 
 // ============================================
-// 3. SCROLL-REVEAL — elements fade up into view
+// 3. SCROLL-REVEAL - elements fade up into view
 // ============================================
 
 const revealItems = document.querySelectorAll(
-    ".card, .about-grid, .contact-grid, section h2, .eyebrow"
+    ".card, .about-grid, .contact-grid, section h2, .eyebrow, .review-card"
 );
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -111,7 +147,7 @@ if ("IntersectionObserver" in window && !reduceMotion) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
-                observer.unobserve(entry.target); // animate once, then stop
+                observer.unobserve(entry.target);
             }
         });
     }, { threshold: 0.12 });
@@ -121,31 +157,26 @@ if ("IntersectionObserver" in window && !reduceMotion) {
         observer.observe(el);
     });
 }
-// Older browsers / reduced-motion users: .reveal is never added,
-// so everything simply shows normally.
 
 // ============================================
 // 4. COOKIE CONSENT
-// Remembers the visitor's choice, and only loads the
-// Google Map if they've accepted.
 // ============================================
 
 const cookieBanner = document.getElementById("cookie-banner");
 const CONSENT_KEY = "lpp-cookie-consent";
 
-// Put the map into its container. Only called after consent.
 function loadMap() {
     const holder = document.getElementById("map-embed");
     if (!holder || holder.querySelector("iframe")) return;
 
     const iframe = document.createElement("iframe");
-    iframe.src = holder.dataset.mapSrc; // reads the data-map-src attribute
+    iframe.src = holder.dataset.mapSrc;
     iframe.loading = "lazy";
     iframe.referrerPolicy = "strict-origin-when-cross-origin";
     iframe.title = "Map showing Linda Pearson Podiatry at Abakhan Craft Village";
     iframe.setAttribute("allowfullscreen", "");
 
-    holder.innerHTML = ""; // clear the "map hidden" message
+    holder.innerHTML = "";
     holder.appendChild(iframe);
 }
 
@@ -155,24 +186,20 @@ function setConsent(choice) {
     if (choice === "accepted") loadMap();
 }
 
-// On page load: act on any previous choice, or show the banner
 const savedConsent = localStorage.getItem(CONSENT_KEY);
 
 if (savedConsent === "accepted") {
     loadMap();
 } else if (savedConsent !== "declined" && cookieBanner) {
-    cookieBanner.hidden = false; // no choice made yet - ask
+    cookieBanner.hidden = false;
 }
 
-// Wire up the buttons (they only exist if the banner is on the page)
 const acceptBtn = document.getElementById("cookie-accept");
 const declineBtn = document.getElementById("cookie-decline");
 
 if (acceptBtn) acceptBtn.addEventListener("click", function () { setConsent("accepted"); });
 if (declineBtn) declineBtn.addEventListener("click", function () { setConsent("declined"); });
 
-// "Cookie settings" footer link re-opens the banner so a visitor
-// can change their mind - a requirement of doing this properly.
 const settingsLink = document.getElementById("cookie-settings-link");
 if (settingsLink) {
     settingsLink.addEventListener("click", function (event) {
