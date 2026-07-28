@@ -1169,7 +1169,9 @@ a.blog-card:hover {
 
 .review-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* "Fit as many columns as will fit, each at least 280px wide."
+       The grid re-flows itself at any screen size - no media query needed. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     text-align: left;
 }
