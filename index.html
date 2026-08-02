@@ -22,6 +22,48 @@
 
     <!-- Our stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- Structured data: tells Google exactly what this business is, where,
+         and when it's open. Invisible to visitors. Validate any changes at
+         search.google.com/test/rich-results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Linda Pearson Podiatry",
+      "description": "Private podiatry and chiropody practice in North Wales, offering routine foot care, verrucae, ingrown toenails, corns and calluses, and specialist diabetic foot care.",
+      "url": "https://www.lindapearsonpodiatry.com/",
+      "logo": "https://www.lindapearsonpodiatry.com/images/logo.png",
+      "image": "https://www.lindapearsonpodiatry.com/images/linda.png",
+      "telephone": "+447907106006",
+      "email": "lindapearsonchp@gmail.com",
+      "priceRange": "££",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Unit 7, Abakhan Craft Village, Coast Road",
+        "addressLocality": "Llanerch Y Mor, Holywell",
+        "addressRegion": "Flintshire",
+        "postalCode": "CH8 9DX",
+        "addressCountry": "GB"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 53.30415625707053,
+        "longitude": -3.237717253583778
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "16:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "North Wales"
+      }
+    }
+    </script>
 </head>
 <body>
 
@@ -141,16 +183,6 @@
                 <p>A warming wax treatment for hands or feet - soothing
                    for dry skin and tired joints.</p>
                 <p class="price">From &pound;48</p>
-            </a>
-
-            <a href="treatments.html#luxury-pedicure" class="card">
-                <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
-                <h3>Luxury pedicure</h3>
-                <p>Foot care with a treat on top - leave with healthy
-                   feet that look after themselves.</p>
-                <p class="price">Price on enquiry</p>
-                <!-- PLACEHOLDER: confirm price, or remove this card if
-                     paraffin wax IS the luxury pedicure -->
             </a>
 
         </div>
