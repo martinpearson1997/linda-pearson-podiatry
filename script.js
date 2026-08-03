@@ -180,10 +180,42 @@ function loadMap() {
     holder.appendChild(iframe);
 }
 
+// Load Google Analytics. Only ever called after the visitor accepts.
+function loadAnalytics() {
+    if (window.gaLoaded) return;   // never load twice
+    window.gaLoaded = true;
+
+    const GA_ID = "G-BS0FVE6W4G";
+
+    // Inject Google's script tag into the page
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(script);
+
+    // Google's standard initialisation snippet
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+}
+
 function setConsent(choice) {
     localStorage.setItem(CONSENT_KEY, choice);
     if (cookieBanner) cookieBanner.hidden = true;
-    if (choice === "accepted") loadMap();
+    if (choice === "accepted") {
+        loadMap();
+        loadAnalytics();
+    }
+}
+
+const savedConsent = localStorage.getItem(CONSENT_KEY);
+
+if (savedConsent === "accepted") {
+    loadMap();
+    loadAnalytics();
+} else if (savedConsent !== "declined" && cookieBanner) {
+    cookieBanner.hidden = false;
 }
 
 const savedConsent = localStorage.getItem(CONSENT_KEY);
