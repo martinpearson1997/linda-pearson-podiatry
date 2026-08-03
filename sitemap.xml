@@ -3,26 +3,35 @@
   SITEMAP - a list of this site's pages for search engines.
   Add a new <url> block whenever a new page goes live (especially
   blog posts), and update its <lastmod> date (YYYY-MM-DD).
+
+  Do NOT list 404.html here - error pages must never be in a sitemap.
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
         <loc>https://www.lindapearsonpodiatry.com/</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://www.lindapearsonpodiatry.com/treatments</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://www.lindapearsonpodiatry.com/book</loc>
+        <lastmod>2026-08-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
     <url>
         <loc>https://www.lindapearsonpodiatry.com/blog</loc>
-        <lastmod>2026-07-28</lastmod>
+        <lastmod>2026-08-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

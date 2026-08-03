@@ -1427,3 +1427,51 @@ select:focus {
     color: var(--ink-soft);
     margin-bottom: 1.25rem;
 }
+
+/* ============================================
+   23. 404 PAGE
+   ============================================ */
+
+.error-page {
+    text-align: center;
+    padding: 6rem 1.5rem;
+}
+
+.error-page h1 {
+    font-family: var(--font-head);
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    color: var(--teal-dark);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.error-lead {
+    max-width: 32em;
+    margin: 0 auto 2rem;
+    color: var(--ink-soft);
+}
+
+.error-links {
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+}
+
+.error-links a {
+    color: var(--teal);
+    font-weight: 600;
+}
+
+/* Outlined button for use on light backgrounds - the existing
+   .button-outline is white-on-dark, which would vanish here */
+.button-outline-dark {
+    background-color: transparent;
+    color: var(--teal);
+    border: 2px solid var(--teal);
+    box-shadow: none;
+}
+
+.button-outline-dark:hover {
+    background-color: var(--teal-soft);
+    color: var(--teal-dark);
+}
