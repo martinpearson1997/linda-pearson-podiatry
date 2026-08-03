@@ -1059,7 +1059,9 @@ form .button:hover {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* auto-fit: works out its own column count at any screen width,
+       so no media query is needed to make these stack. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
